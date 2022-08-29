@@ -93,7 +93,7 @@ const HomePage = () => {
                                 onClick={createDocument}
                                 className="text-white bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg inline-flex items-center px-4 py-2 text-center mr-6 text-lg"
                             >
-                                Yes, I'm sure
+                                Create Doc
                             </button>
                             <button
                                 onClick={closeShowModal}
