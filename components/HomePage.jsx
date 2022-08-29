@@ -13,7 +13,6 @@ import DocumentsRow from "./DocumentsRow";
 const HomePage = () => {
     const { currentUser } = useAuth();
     // console.log(currentUser);
-    if (!currentUser) return <Login />;
     const [showModal, setShowModal] = useState(false);
     const [fileName, setFileName] = useState("");
 
@@ -46,6 +45,8 @@ const HomePage = () => {
     const { documents } = getDocuments(
         `documents/${currentUser?.uid}/${currentUser?.displayName}`
     );
+    
+    if (!currentUser) return <Login />;
 
     const modal = (
         <div className="h-screen w-screen flex bg-[rgba(0,0,0,.4)] justify-center items-center absolute top-0">

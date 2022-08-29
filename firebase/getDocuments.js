@@ -19,13 +19,6 @@ const getDocuments = (collectionName) => {
         setDocuments(docs);
       },
       (error) => {
-        // setAlert({
-        //   isAlert: true,
-        //   severity: "error",
-        //   message: error.message,
-        //   timeout: 8000,
-        //   location: "main",
-        // });
         console.log(error);
       }
     );
