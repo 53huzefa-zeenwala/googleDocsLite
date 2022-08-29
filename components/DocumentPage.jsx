@@ -12,7 +12,7 @@ import DocumentHeader from './DocumentHeader'
 
 function DocumentPage() {
     const [document, setDocument] = useState([]);
-    const { query } = useRouter();
+    const { query, replace } = useRouter();
     const { currentUser } = useAuth();
     const { id } = query;
 
@@ -27,6 +27,9 @@ function DocumentPage() {
                 const snapshot = async () => {
                     const rowDocument = await getDoc(q);
                     setDocument(rowDocument.data());
+                    if (rowDocument?.data()?.uid !== currentUser.uid) {
+                        replace('/')
+                    }
                 };
                 snapshot();
             } catch (error) {
