@@ -87,7 +87,7 @@ const HomePage = () => {
         }
         closeUploadFileModal()
     }
-
+console.log(documents[0])
     if (!currentUser) return <Login />;
 
     return (

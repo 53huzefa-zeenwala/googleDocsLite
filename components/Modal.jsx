@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function Modal({ showModal, closeShowModal, createDocument, deleteDocumentConfirm, setFileName, fileName, uploadFile, setUploadFileData }) {
     return (
-        <div className="h-screen w-screen flex bg-[rgba(0,0,0,.4)] justify-center items-center absolute top-0 left-0">
+        <div className="h-screen w-screen flex bg-[rgba(0,0,0,.4)] justify-center items-center fixed top-0 left-0 z-50">
             <div
                 style={{ transition: "all 1s", opacity: showModal ? "1" : "0" }}
                 id="popup-modal"
@@ -54,7 +54,7 @@ export default function Modal({ showModal, closeShowModal, createDocument, delet
                                 className="w-full py-2 px-3 border-2 border-gray-400 rounded-md my-6 bg-gray-50 outline-none focus:border-blue-400 focus:bg-blue-50 hover:border-blue-300 focus:shadow-md hover:bg-blue-50"
                                 onChange={(e) => setUploadFileData(e.target.files[0])}
                             />}
-                            \
+                            
                             {deleteDocumentConfirm && <h1 className='text-center pb-5 pt-1 text-xl font-semibold'>Are you sure you want to delete this document permanent?</h1>}
 
                             {createDocument && <button
