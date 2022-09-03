@@ -13,3 +13,9 @@
         @apply text-white bg-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg inline-flex items-center px-4 py-2 text-center mr-6 text-lg
     }
 }
+.logoutContext {
+    opacity: 0;
+}
+.showLogoutContext:hover + .logoutContext,.showLogoutContext:focus + .logoutContext {
+    opacity: 1;
+}
