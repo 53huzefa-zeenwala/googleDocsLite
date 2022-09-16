@@ -38,7 +38,7 @@ function DocumentPage() {
         }
     }, [id, currentUser]);
 
-    if (!currentUser) return <Login />;
+    if (!currentUser) return <Login currentUser={currentUser} />;
     return (
         <div>
             <DocumentHeader fileName={document?.fileName} />

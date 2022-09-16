@@ -87,9 +87,11 @@ const HomePage = () => {
         }
         closeUploadFileModal()
     }
-console.log(documents[0])
-    if (!currentUser) return <Login />;
 
+    console.log(currentUser)
+
+    if (!currentUser) return <Login currentUser={currentUser} />;
+    
     return (
         <>
             <Header />
@@ -169,7 +171,7 @@ console.log(documents[0])
 
             {showModal && <Modal showModal={showModal} closeShowModal={closeShowModal} createDocument={createDocument} fileName={fileName} setFileName={setFileName} />}
 
-            {showUploadFileModal && <Modal showModal={showUploadFileModal} closeShowModal={closeUploadFileModal} uploadFile={uploadFile} setUploadFileData={setUploadFileData} fileName={fileName} setFileName={setFileName} />}
+            {showUploadFileModal && <Modal showModal={showUploadFileModal} closeShowModal={closeUploadFileModal} uploadFile={uploadFile} setUploadFileData={setUploadFileData} fileName={fileName} setFileName={setFileName} />} 
 
         </>
     )
