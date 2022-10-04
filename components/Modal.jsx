@@ -40,6 +40,14 @@ export default function Modal({ showModal, closeShowModal, createDocument, delet
                                 onChange={(e) => setFileName(e.target.value)}
                                 onKeyDown={(e) => e.key === "Enter" && createDocument()}
                             />}
+                            {/* {createDocument && <input
+                                type="checkbox"
+                                placeholder="File Name..."
+                                className="w-full py-2 px-3 border-2 border-gray-400 rounded-md my-6 bg-gray-50 outline-none focus:border-blue-400 focus:bg-blue-50 hover:border-blue-300 focus:shadow-md hover:bg-blue-50"
+                                value={fileName}
+                                onChange={(e) => setFileName(e.target.value)}
+                                onKeyDown={(e) => e.key === "Enter" && createDocument()}
+                            />} */}
                             {uploadFile && <input
                                 type="text"
                                 placeholder="File Name..."

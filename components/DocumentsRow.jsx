@@ -10,18 +10,15 @@ function DocumentsRow({ id, fileName, date, currentUserUid, currentUserName }) {
     const [showOption, setShowOption] = useState(false)
     const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false)
 
-
-
-
     const deleteDocumentConfirm = async () => {
-       if (showDeleteConfirmation) {
-        try {
-            await deleteDocument(`documents/${currentUserUid}/${currentUserName}`, id)
-        } catch (error) {
-            console.log(error)
+        if (showDeleteConfirmation) {
+            try {
+                await deleteDocument(`documents/${currentUserUid}/${currentUserName}`, id)
+            } catch (error) {
+                console.log(error)
+            }
         }
-       }
-       setShowDeleteConfirmation(false)
+        setShowDeleteConfirmation(false)
     }
     return (
         <>
@@ -34,9 +31,11 @@ function DocumentsRow({ id, fileName, date, currentUserUid, currentUserName }) {
                 <button className="hover:bg-slate-200 rounded-md" onClick={() => setShowOption(!showOption)}>
                     <BiDotsVerticalRounded className="text-gray-700 text-2xl" />
                 </button>
-                <div className="absolute right-0 top-10 z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow  " style={{ display: showOption ? 'inline' : 'none' }} onMouseLeave={() => setShowOption(false)}>
+                <div className="absolute right-0 top-10 z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow flex flex-col gap-2 " style={{ display: showOption ? 'inline' : 'none' }} onMouseLeave={() => setShowOption(false)}>
                     <ul className="py-1 text-sm text-gray-700 px-1" aria-labelledby="dropdownDividerButton">
                         <li><button onClick={() => setShowDeleteConfirmation(true)} className="block w-full text-left font-medium py-2 px-4 hover:bg-gray-100 rounded-md">Delete</button>
+                        </li>
+                        <li><button className="block w-full text-left font-medium py-2 px-4 hover:bg-gray-100 rounded-md">Edit</button>
                         </li>
                     </ul>
                 </div>

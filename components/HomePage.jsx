@@ -13,13 +13,17 @@ import Modal from "./Modal";
 import { FaFileUpload } from 'react-icons/fa'
 import uploadDocToStorage from "../firebase/uploadDocToStorage";
 import UploadDocRow from "./UploadDocRow";
+import Spinner from "./Spinner";
+import { useRouter } from "next/router"
 
 const HomePage = () => {
+    const { push } = useRouter()
     const { currentUser } = useAuth();
     const [showModal, setShowModal] = useState(false);
     const [showUploadFileModal, setShowUploadFileModal] = useState(false)
     const [fileName, setFileName] = useState("");
     const [uploadFileData, setUploadFileData] = useState()
+    const [loading, setLoading] = useState(false)
 
     const closeShowModal = () => {
         setShowModal(false);
@@ -41,7 +45,7 @@ const HomePage = () => {
 
     const createDocument = async () => {
         if (fileName.length <= 3) return;
-
+        setLoading(true)
         const finalFileName = uuidv4() + "." + fileName.split(" ").join(".");
         try {
             const galleryDoc = {
@@ -57,11 +61,13 @@ const HomePage = () => {
         } catch (error) {
             console.log(error);
         }
+        setLoading(false)
         closeShowModal();
     };
 
     const uploadFile = async () => {
         if (uploadFileData && fileName) {
+            setLoading(true)
             const finalFileName = uuidv4() + "." + fileName.split(" ").join(".");
             try {
                 const url = await uploadDocToStorage(
@@ -84,14 +90,13 @@ const HomePage = () => {
             } catch (error) {
                 console.log(error)
             }
+            setLoading(false)
+            closeUploadFileModal()
         }
-        closeUploadFileModal()
     }
 
-    console.log(currentUser)
-
     if (!currentUser) return <Login currentUser={currentUser} />;
-    
+
     return (
         <>
             <Header />
@@ -171,8 +176,12 @@ const HomePage = () => {
 
             {showModal && <Modal showModal={showModal} closeShowModal={closeShowModal} createDocument={createDocument} fileName={fileName} setFileName={setFileName} />}
 
-            {showUploadFileModal && <Modal showModal={showUploadFileModal} closeShowModal={closeUploadFileModal} uploadFile={uploadFile} setUploadFileData={setUploadFileData} fileName={fileName} setFileName={setFileName} />} 
-
+            {showUploadFileModal && <Modal showModal={showUploadFileModal} closeShowModal={closeUploadFileModal} uploadFile={uploadFile} setUploadFileData={setUploadFileData} fileName={fileName} setFileName={setFileName} />}
+             
+            {loading && 
+            <div className="fixed h-screen w-full top-0 left-0 bg-gray-900 z-50 overflow-y-hidden bg-opacity-30 flex justify-center items-center">
+                <Spinner />
+            </div>}
         </>
     )
 }

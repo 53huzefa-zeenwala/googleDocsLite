@@ -11,15 +11,15 @@ function UploadDocRow({ id, fileName, date, currentUserUid, currentUserName, fin
 
 
     const deleteDocumentConfirm = async () => {
-       if (showDeleteConfirmation) {
-        try {
-            await deleteDocument(`uploadDoc/${currentUserUid}/${currentUserName}`, id)
-            await deleteFile(`uploadDoc/${currentUserUid}/${finalFileName}`)
-        } catch (error) {
-            console.log(error)
+        if (showDeleteConfirmation) {
+            try {
+                await deleteDocument(`uploadDoc/${currentUserUid}/${currentUserName}`, id)
+                await deleteFile(`uploadDoc/${currentUserUid}/${finalFileName}`)
+            } catch (error) {
+                console.log(error)
+            }
         }
-       }
-       setShowDeleteConfirmation(false)
+        setShowDeleteConfirmation(false)
     }
     return (
         <>
@@ -36,6 +36,7 @@ function UploadDocRow({ id, fileName, date, currentUserUid, currentUserName, fin
                     <ul className="py-1 text-sm text-gray-700 px-1" aria-labelledby="dropdownDividerButton">
                         <li><button onClick={() => setShowDeleteConfirmation(true)} className="block w-full text-left font-medium py-2 px-4 hover:bg-gray-100 rounded-md">Delete</button>
                         </li>
+                    
                     </ul>
                 </div>
             </div>
